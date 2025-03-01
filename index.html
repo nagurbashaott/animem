@@ -3,132 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moonstream - Watch Your Favorite Anime</title> <!-- Title -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <title>StreamFlix</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #4a90e2;
-            color: #ffffff;
-            overflow-x: hidden;
+            background-color: #111;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         }
 
         h1 {
-            font-family: 'Kalam', cursive;
-            font-size: 48px;
-            text-align: center;
-            color: #f39c12;
-            margin-top: 50px;
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-out;
+            color: red;
+            font-size: 24px;
+            margin: 0;
         }
 
-        h2 {
-            color: #f1c40f;
-            text-align: center;
-            margin-top: 40px;
+        nav ul {
+            list-style: none;
+            padding: 0;
         }
 
-        h3 {
-            color: #f1c40f;
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
         }
 
-        .carousel {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .carousel-item {
-            width: 220px;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .thumbnail {
-            width: 220px;
-            height: 260px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.8);
-            transition: filter 0.4s ease-in-out;
-        }
-
-        .thumbnail:hover img {
-            filter: brightness(1);
-        }
-
-        .preview-text {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: #f8f9fa;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 8px;
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #444;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 60px 20px;
+            background: url('https://via.placeholder.com/1200x500') no-repeat center center/cover;
+            color: white;
+        }
+
+        .banner h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .product-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: #222;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .product-card .price {
+            font-size: 20px;
+            color: orange;
+            margin: 10px 0;
+        }
+
+        .discount {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 5px;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, red, orange);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            background: linear-gradient(45deg, orange, red);
+        }
+
+        @media (max-width: 768px) {
+            .banner h2 {
+                font-size: 2rem;
+            }
+
+            .banner p {
+                font-size: 1rem;
+            }
+
+            .product-section {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .buy-form {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            width: 400px;
+            margin: 30px auto;
+        }
+
+        .buy-form input,
+        .buy-form button {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .buy-form input {
+            background-color: #333;
+            color: white;
+        }
+
+        .buy-form button {
+            background: linear-gradient(45deg, red, orange);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .buy-form button:hover {
+            background: linear-gradient(45deg, orange, red);
+        }
+
+        .buy-section {
             display: none;
         }
 
-        .thumbnail:hover .preview-text {
+        .show-buy-page {
             display: block;
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Title of the page -->
-    <h1>Moonstream</h1>
+    <header>
+        <h1>StreamFlix</h1>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="showHomePage()">Home</a></li>
+                <li><a href="#buy" onclick="showBuyPage()">Buy Now</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Anime Section -->
-    <h2>Featured Anime</h2>
-    <div class="carousel">
-        <div class="carousel-item">
-            <a href="watch.html">
-                <div class="thumbnail">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxst8MRS70aM6EQT9cf4qH5MEDHGPbvP7lbfV0GcDP6W_V3-y" alt="Naruto">
-                    <div class="preview-text">Watch Naruto!</div>
-                </div>
-            </a>
-            <h3>Watch Naruto Now</h3> <!-- Changed title here -->
+    <!-- Homepage Section -->
+    <section id="home">
+        <div class="banner">
+            <h2>Welcome to StreamFlix</h2>
+            <p>Browse and purchase your favorite premium services at unbeatable prices. Streaming made simple.</p>
         </div>
-        <div class="carousel-item">
-            <a href="kaijuno8s1.html">
-                <div class="thumbnail">
-                    <img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/bb5785a9fe043b8331b7842068bfcb05.jpg" alt="Demon Slayer">
-                    <div class="preview-text">Watch kaiju no 8!</div>
-                </div>
-            </a>
-            <h3>kaiju no 8</h3> <!-- Changed title here -->
-        </div>
-    </div>
 
+        <section class="product-section">
+            <div class="product-card">
+                <img src="https://ottstore.io/gmail.svg" alt="Gmail Premium">
+                <h3>Gmail Premium</h3>
+                <p>Secure, verified email accounts.</p>
+                <p class="price">$5.99 <span class="discount">$9.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/Nj6nJ3z4/download-1.png" alt="Netflix Premium">
+                <h3>Netflix Premium</h3>
+                <p>Unlimited streaming in 4K UHD.</p>
+                <p class="price">$9.99 <span class="discount">$14.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+            <div class="product-card">
+                <img src="https://ottstore.io/MAMA/mama.png" alt="Amazon Prime">
+                <h3>Amazon Prime</h3>
+                <p>Stream and shop with exclusive deals.</p>
+                <p class="price">$7.99 <span class="discount">$11.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+            <div class="product-card">
+                <img src="https://ottstore.io/MAMA/mama1.png" alt="Spotify Premium">
+                <h3>Spotify Premium</h3>
+                <p>Ad-free music streaming.</p>
+                <p class="price">$6.99 <span class="discount">$10.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+            <div class="product-card">
+                <img src="https://ottstore.io/MAMA/mama5.png" alt="Disney+ Hotstar">
+                <h3>Disney+ Hotstar</h3>
+                <p>Enjoy the latest movies and shows.</p>
+                <p class="price">$8.99 <span class="discount">$12.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+            <div class="product-card">
+                <img src="https://ottstore.io/MAMA/mama2.png" alt="Crunchyroll Premium">
+                <h3>Crunchyroll Premium</h3>
+                <p>Watch anime ad-free.</p>
+                <p class="price">$7.99 <span class="discount">$10.99</span></p>
+                <a href="#buy" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+            </div>
+        </section>
+    </section>
+
+    <!-- Buy Now Section -->
+    <section id="buy" class="buy-section">
+        <div class="buy-form">
+            <h2>Complete Your Purchase</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Phone Number" required>
+                <input type="text" placeholder="UPI ID" required>
+                <input type="file" placeholder="Upload Screenshot" required>
+                <button type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 StreamFlix. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showBuyPage() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('buy').style.display = 'block';
+        }
+
+        function showHomePage() {
+            document.getElementById('buy').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
