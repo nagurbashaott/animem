@@ -136,54 +136,6 @@
             font-size: 14px;
         }
 
-        .buy-form {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background-color: #222;
-            border-radius: 10px;
-            width: 400px;
-            margin: 30px auto;
-        }
-
-        .buy-form input,
-        .buy-form button {
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .buy-form input {
-            background-color: #333;
-            color: white;
-        }
-
-        .buy-form button {
-            background: linear-gradient(45deg, red, orange);
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .buy-form button:hover {
-            background: linear-gradient(45deg, orange, red);
-        }
-
-        /* Fixing bug visibility */
-        #buy {
-            display: none;
-        }
-
-        /* Ensuring smooth transitions when showing the buy page */
-        .buy-section {
-            display: none;
-        }
-
-        .show-buy-page {
-            display: block;
-        }
-
     </style>
 </head>
 <body>
@@ -192,7 +144,6 @@
         <nav>
             <ul>
                 <li><a href="javascript:void(0)" onclick="showHomePage()">Home</a></li>
-                <li><a href="javascript:void(0)" onclick="showBuyPage()">Buy Now</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
@@ -212,7 +163,8 @@
                 <h3>Gmail Premium</h3>
                 <p>Secure, verified email accounts.</p>
                 <p class="price">$5.99 <span class="discount">$9.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
 
             <!-- Netflix Premium -->
@@ -221,7 +173,8 @@
                 <h3>Netflix Premium</h3>
                 <p>Unlimited streaming in 4K UHD.</p>
                 <p class="price">$9.99 <span class="discount">$14.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
 
             <!-- Amazon Prime -->
@@ -230,7 +183,8 @@
                 <h3>Amazon Prime</h3>
                 <p>Stream and shop with exclusive deals.</p>
                 <p class="price">$7.99 <span class="discount">$11.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
 
             <!-- Spotify Premium -->
@@ -239,7 +193,8 @@
                 <h3>Spotify Premium</h3>
                 <p>Ad-free music streaming.</p>
                 <p class="price">$6.99 <span class="discount">$10.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
 
             <!-- Disney+ Hotstar -->
@@ -248,7 +203,8 @@
                 <h3>Disney+ Hotstar</h3>
                 <p>Enjoy the latest movies and shows.</p>
                 <p class="price">$8.99 <span class="discount">$12.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
 
             <!-- Crunchyroll Premium -->
@@ -257,73 +213,15 @@
                 <h3>Crunchyroll Premium</h3>
                 <p>Watch anime ad-free.</p>
                 <p class="price">$7.99 <span class="discount">$10.99</span></p>
-                <a href="javascript:void(0)" onclick="showBuyPage()"><button class="buy-button">Buy Now</button></a>
+                <!-- Buy Now Button -->
+                <a href="qr.html"><button class="buy-button">Buy Now</button></a>
             </div>
-
         </section>
-    </section>
-
-    <!-- Buy Now Section -->
-    <section id="buy" class="buy-section">
-        <div class="buy-form">
-            <h2>Complete Your Purchase</h2>
-            <form id="customForm">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="text" placeholder="Phone Number" required>
-                <input type="text" placeholder="UPI ID" required>
-                <input type="file" placeholder="Upload Screenshot" required>
-                <button type="submit" class="submit-button">Submit</button>
-            </form>
-        </div>
     </section>
 
     <footer>
         <p>&copy; 2025 StreamFlix. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        function showBuyPage() {
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('buy').style.display = 'block';
-        }
-
-        function showHomePage() {
-            document.getElementById('buy').style.display = 'none';
-            document.getElementById('home').style.display = 'block';
-        }
-
-        // Telegram Bot API setup
-        const botToken = "7632352886:AAEyGJPQkyXYUkFJ5oAbJJbMTtpwoqPr-1s";
-        const chatId = "5247395156";
-
-        // Function to send message to Telegram Bot
-        function sendTelegramMessage(message) {
-            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-            fetch(telegramUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        console.log("Message sent to Telegram");
-                    } else {
-                        console.error("Failed to send message", data);
-                    }
-                })
-                .catch(error => console.error("Error sending message:", error));
-        }
-
-        // Handle form submission
-        document.getElementById("customForm").addEventListener("submit", function (e) {
-            e.preventDefault();  // Prevent form submission
-            const name = document.querySelector("input[placeholder='Full Name']").value;
-            const email = document.querySelector("input[placeholder='Email Address']").value;
-            const phone = document.querySelector("input[placeholder='Phone Number']").value;
-            const upi = document.querySelector("input[placeholder='UPI ID']").value;
-
-            const formData = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nUPI ID: ${upi}`;
-            sendTelegramMessage(formData);  // Send form data to Telegram Bot
-        });
-    </script>
 
 </body>
 </html>
